@@ -9,6 +9,10 @@ import (
 	tb "github.com/nsf/termbox-go"
 )
 
+// TODO: allow more than single digit numbers (opt-in via a CLI flag)
+// 		 allow opt-in letters
+// 	     incorporate some sort of timing
+
 func main() {
 	err := tb.Init()
 	if err != nil {
