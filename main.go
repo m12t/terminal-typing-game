@@ -14,7 +14,7 @@ import (
 //   - we actually need to use unicode since termbox returns unicode.
 //     luckily, the first 127 characters of unicode == first 127 of ASCII
 const (
-	asciiLow, asciiHigh           = 33, 127
+	asciiLow, asciiHigh           = 33, 126
 	numLow, numHigh               = 48, 57
 	upperAlphaLow, upperAlphaHigh = 65, 90
 	lowerAlphaLow, lowerAlphaHigh = 97, 122
@@ -99,13 +99,12 @@ func main() {
 	var idx, hits, total int
 	target, size := generateTarget(charBank, *maxLenPtr, *variablePtr)
 	for {
-		time.Sleep(50 * time.Millisecond)
 		fmt.Print(clearTerminal, colorReset) // clear the terminal
 		fmt.Printf("%s%s%s%s%s", string(target[:idx]), colorGreen, string(target[idx]), colorReset, string(target[restOfTarget(size, idx):]))
 		event := tb.PollEvent() // blocking
 		if event.Key == tb.KeyEsc {
 			fmt.Print(clearTerminal)
-			fmt.Printf("%.2f accuracy %d/%d characters\n", float64(hits)/float64(total)*100.0, hits, total)
+			fmt.Printf("%.2f%% accuracy %d/%d characters\n", float64(hits)/float64(total)*100.0, hits, total)
 			time.Sleep(5 * time.Second) // give the user time to view the results before exiting.
 			return
 		}
@@ -120,6 +119,7 @@ func main() {
 			}
 		} else {
 			fmt.Println(colorRed, "MISS!")
+			time.Sleep(50 * time.Millisecond)
 		}
 	}
 }

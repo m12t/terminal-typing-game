@@ -23,7 +23,7 @@ This is a humble typing game I made to help me get better at touch typing. But s
             - `alpha`: letters `[a-z]` (the letter case is modified by another flag, `case`)
             - `alphanum`: letters and numbers `[a-z0-9]`
             - `num`: numbers only `[0-9]`
-            - `fullASCII`: letters, numbers, and symbols. For an exact list, it's [ASCII characters 33-127](https://www.cs.cmu.edu/~pattis/15-1XX/common/handouts/ascii.html)
+            - `fullASCII`: letters, numbers, and symbols. For an exact list, it's [ASCII characters 33-126](https://www.cs.cmu.edu/~pattis/15-1XX/common/handouts/ascii.html)
     - `case` one of `{'lower', 'upper', 'mixed'}`, default `lower`
         - `case` modifies the letters in `mode`, if alpha characters were chosen
             - `lower`: lowercase letters only
