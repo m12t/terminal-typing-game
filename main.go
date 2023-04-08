@@ -73,9 +73,9 @@ func restOfTarget(size, idx int) int {
 
 func main() {
 
-	modePtr := flag.String("mode", "num", "mode: {'alpha', 'num', 'alphanum', 'fullASCII'}")
-	casePtr := flag.String("case", "mixed", "case: {'lower', 'upper', 'mixed'}")
-	maxLenPtr := flag.Int("length", 1, "max target string length (or target string length if `variable` flag is False)")
+	modePtr := flag.String("mode", "alphanum", "mode: {'alpha', 'num', 'alphanum', 'fullASCII'}")
+	casePtr := flag.String("case", "lower", "case: {'lower', 'upper', 'mixed'}")
+	maxLenPtr := flag.Int("length", 7, "max target string length (or target string length if `variable` flag is False)")
 	variablePtr := flag.Bool("variable", true, "generate variable length target string for each run over range [1, length]")
 	flag.Parse()
 
