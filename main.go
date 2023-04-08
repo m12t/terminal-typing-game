@@ -18,6 +18,10 @@ const (
 	numLow, numHigh               = 48, 57
 	upperAlphaLow, upperAlphaHigh = 65, 90
 	lowerAlphaLow, lowerAlphaHigh = 97, 122
+	clearTerminal                 = "\033[H\033[2J"
+	colorReset                    = "\033[0m"
+	colorGreen                    = "\033[32m"
+	colorRed                      = "\033[31m"
 )
 
 func generateTarget(bank *[]rune, targetLen int, isVariableLen bool) ([]rune, int) {
@@ -60,6 +64,13 @@ func buildCharBank(mode, letterCase *string) *[]rune {
 	return &bank
 }
 
+func restOfTarget(size, idx int) int {
+	if idx+1 >= size {
+		return size
+	}
+	return idx + 1
+}
+
 func main() {
 
 	modePtr := flag.String("mode", "num", "mode: {'alpha', 'num', 'alphanum', 'fullASCII'}")
@@ -89,11 +100,11 @@ func main() {
 	target, size := generateTarget(charBank, *maxLenPtr, *variablePtr)
 	for {
 		time.Sleep(50 * time.Millisecond)
-		fmt.Print("\033[H\033[2J") // clear the terminal
-		fmt.Println(string(target))
+		fmt.Print(clearTerminal, colorReset) // clear the terminal
+		fmt.Printf("%s%s%s%s%s", string(target[:idx]), colorGreen, string(target[idx]), colorReset, string(target[restOfTarget(size, idx):]))
 		event := tb.PollEvent() // blocking
 		if event.Key == tb.KeyEsc {
-			fmt.Print("\033[H\033[2J")
+			fmt.Print(clearTerminal)
 			fmt.Printf("%.2f accuracy %d/%d characters\n", float64(hits)/float64(total)*100.0, hits, total)
 			time.Sleep(5 * time.Second) // give the user time to view the results before exiting.
 			return
@@ -108,7 +119,7 @@ func main() {
 				idx = 0
 			}
 		} else {
-			fmt.Println("MISS!")
+			fmt.Println(colorRed, "MISS!")
 		}
 	}
 }
