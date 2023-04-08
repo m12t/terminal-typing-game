@@ -87,9 +87,9 @@ func main() {
 	}
 	defer tb.Close()
 
-	fmt.Println("Welcome!\n>>> The goal of the game is to type the number you see")
-	fmt.Println("    appear on screen as fast as you can while still")
-	fmt.Println("    as accurate as possible!")
+	fmt.Println("\t\t\tWelcome!\n\n>>> The goal of the game is to type the target that")
+	fmt.Println("    appears on screen as fast as you can while still")
+	fmt.Println("    being as accurate as possible!")
 	fmt.Println("\n>>> Your overall accuracy is show when you quit.")
 	fmt.Println("\n>>> To end the game, simply press `esc` at any time.")
 	fmt.Println("\n\t\tPress any key to begin!")
